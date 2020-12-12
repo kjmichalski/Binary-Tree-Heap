@@ -175,35 +175,29 @@ public class Heap<E> {
             E l = startNode.getLeftChild().getElement();
 
             if (comp.compare(r, l) > 0) {
-                Node<E> larger = startNode.getRightChild();
-                if (comp.compare(startNode.getElement(), startNode.getRightChild().getElement()) >0)
-                {
+                if (comp.compare(startNode.getElement(), startNode.getRightChild().getElement()) < 0) {
                     swap(startNode, startNode.getRightChild());
+                    heapify(startNode.getRightChild());
                 }
             }
-            else  {
-                Node <E> larger = startNode.getLeftChild();
-            }
-
-            if (comp.compare(startNode.getElement(), larger.getElement()) > 0) {
-                swap(larger, startNode);
-
-            }
-
-               // while (!isLeaf(larger) {
-                   // if (larger.getRightChild().comp)
-              //  }
-
-
-            //Case 1: your code here... (hint: you need to decide which child node is larger and recurse over that node)
+                else {
+                    if (comp.compare(startNode.getLeftChild().getElement(), startNode.getElement())>0){
+                        swap(startNode, startNode.getLeftChild());
+                        heapify(startNode.getLeftChild());
+                    }
+                }
+            //Case 1:Determines which Node is larger and recurses over that node.
         }
         else if(startNode.getRightChild() != null && comp.compare(startNode.getElement(), startNode.getRightChild().getElement()) < 0)
         {
-            //Case 2: your code here...
-            //Case 2: the right child is greater than the parent which means min haep
+           swap(startNode, startNode.getRightChild());
+           heapify(startNode.getRightChild());
+            //Case 2: The right child is greater than the parent, which means that the
         }
         else if(startNode.getLeftChild() != null && comp.compare(startNode.getElement(), startNode.getLeftChild().getElement()) < 0)
         {
+            swap(startNode, startNode.getLeftChild());
+            heapify(startNode.getLeftChild());
             //Case 3: your code here..
             //The left child is greater than the parent which means min heap?
         }

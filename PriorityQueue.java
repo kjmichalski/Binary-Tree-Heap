@@ -28,7 +28,12 @@ public class PriorityQueue<E> {
     public E poll()
     {
         //Task 3: replace return statement below with your code...
-        return null;
+
+       if (heap.isEmpty())
+           return null;
+       Node<E> root = heap.getRoot();
+       heap.removeRoot();
+       return root.getElement();
     }
 
     /*
@@ -49,6 +54,10 @@ public class PriorityQueue<E> {
     public void clear()
     {
         //Task 4: Your code here...
+        while(heap.getRoot()!=null)
+        {
+            heap.removeRoot();
+        }
     }
 
     //size
